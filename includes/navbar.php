@@ -2,7 +2,7 @@
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
         <div class="nav-title">
-            <img src="../assets/images/logo3.png" alt="">
+            <img src="../assets/images/logo.png" alt="">
         </div>
     </div>
     <div class="nav-btn">
