@@ -1,6 +1,5 @@
 RewriteEngine on
 
-# For .php & .html URL's:
+# For .php URL's:
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
