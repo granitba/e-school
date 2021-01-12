@@ -19,11 +19,10 @@ if (!empty($_POST)) {
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
-
         if (!empty($email) && !empty($password)) {
             try {
                 /** @var PDO $database */
-                $select_stmt = $database->prepare("SELECT password FROM users WHERE email= ?");
+                $select_stmt = $database->prepare("SELECT password,role FROM users WHERE email= ?");
                 $select_stmt->bindParam(1, $email, PDO::PARAM_STR);
                 $select_stmt->execute();
                 $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,6 +30,7 @@ if (!empty($_POST)) {
                 if ($row == false) {
                     header('location: ../login?Invalid');
                 }
+                // Varesisht nga roli te redirektohet ne faqe te ndryshme
                 if (password_verify($password, $row['password'])) {
                     switch ($row['role']) {
                         case 1:
