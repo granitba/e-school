@@ -4,15 +4,15 @@ require_once('../includes/connection.php');
 // Nese useri eshte i loguar, te redirektohet ne indexin e faqes perkatse
 if (isset($_SESSION['admin_login']) && !empty($_SESSION['admin_login'])) {
     header('location: ../admin/index');
-    die();
+    exit;
 }
 if (isset($_SESSION['teacher_login']) && !empty($_SESSION['teacher_login'])) {
     header('location: ../teacher/index');
-    die();
+    exit;
 }
 if (isset($_SESSION['student_login']) && !empty($_SESSION['student_login'])) {
     header('location: ../student/index');
-    die();
+    exit;
 }
 
 if (!empty($_POST)) {
@@ -36,15 +36,15 @@ if (!empty($_POST)) {
                         case 1:
                             $_SESSION['admin_login'] = $email;
                             header('location: ../admin/index');
-                            break;
+                            exit;
                         case 2:
                             $_SESSION['teacher_login'] = $email;
                             header('location: ../teacher/index');
-                            break;
+                            exit;
                         case 3:
                             $_SESSION['student_login'] = $email;
                             header('location: ../student/index');
-                            break;
+                            exit;
                     }
                 } else {
                     header('location: ../login?Invalid');

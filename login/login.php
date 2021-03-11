@@ -7,12 +7,15 @@
     //Nese useri eshte i loguar, te redirektohet ne indexin e faqes perkatse
     if (isset($_SESSION['admin_login']) && $_SESSION['admin_login'] == true) {
         header('location: ./admin/index');
+        exit;
     }
     if (isset($_SESSION['teacher_login']) && $_SESSION['teacher_login'] == true) {
         header('location: ./teacher/index');
+        exit;
     }
     if (isset($_SESSION['student_login']) && $_SESSION['student_login'] == true) {
         header('location: ./student/index');
+        exit;
     }
     ?>
     <body id="login-body">

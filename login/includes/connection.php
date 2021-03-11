@@ -7,7 +7,9 @@ $pass = DB_PASS;
 $name = DB_NAME;
 
 try {
-    $database = new PDO("mysql:host={$host};dbname={$name}",$user,$pass,array(PDO::ATTR_EMULATE_PREPARES=>false));
+    $database = new PDO("mysql:host={$host};dbname={$name}",$user,$pass);
+    $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $exception) {
-    $exception->getMessage();
+    error_log("Connection to database failed: " . $exception->getMessage());
 }
