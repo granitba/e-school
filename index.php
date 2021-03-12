@@ -1,9 +1,9 @@
 <html lang="en">
     <head>
-        <?php include "includes/head.php"; ?>
+        <?php include "./includes/head.php"; ?>
     </head>
     <body>
-        <?php include "includes/navbar.php";
+        <?php include "./includes/navbar.php";
         echo "Faqja jone :p";
         ?>
 <!--        CONTENTI-->

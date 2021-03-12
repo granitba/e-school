@@ -1,19 +1,5 @@
 <?php
-require_once('../includes/connection.php');
-
-// Nese useri eshte i loguar, te redirektohet ne indexin e faqes perkatse
-if (isset($_SESSION['admin_login']) && !empty($_SESSION['admin_login'])) {
-    header('location: ../admin/index');
-    exit;
-}
-if (isset($_SESSION['teacher_login']) && !empty($_SESSION['teacher_login'])) {
-    header('location: ../teacher/index');
-    exit;
-}
-if (isset($_SESSION['student_login']) && !empty($_SESSION['student_login'])) {
-    header('location: ../student/index');
-    exit;
-}
+require_once '../includes/connection.php';
 
 if (!empty($_POST)) {
     if (isset($_POST['email']) && isset($_POST['password'])) {
@@ -21,7 +7,7 @@ if (!empty($_POST)) {
         $password = $_POST['password'];
         if (!empty($email) && !empty($password)) {
             try {
-                /** @var PDO $database */
+                global $database;
                 $select_stmt = $database->prepare("SELECT password,role FROM users WHERE email= ?");
                 $select_stmt->bindParam(1, $email, PDO::PARAM_STR);
                 $select_stmt->execute();
@@ -29,6 +15,7 @@ if (!empty($_POST)) {
 
                 if ($row == false) {
                     header('location: ../login?Invalid');
+                    exit;
                 }
                 // Varesisht nga roli te redirektohet ne faqe te ndryshme
                 if (password_verify($password, $row['password'])) {
@@ -47,12 +34,22 @@ if (!empty($_POST)) {
                             exit;
                     }
                 } else {
-                    header('location: ../login?Invalid');
+                    header('location: ../login?invalid');
+                    exit;
                 }
 
             } catch (PDOException $exception) {
-                $exception->getMessage();
+                error_log("Couldn't log in: " . $exception->getMessage());
+                header('location: ../login?failed');
+                exit;
             }
+        } else {
+            header('location: ../login?invalid');
+            exit;
         }
+    } else {
+        header('location: ../login?invalid');
+        exit;
     }
 }
+header('location: ../login?invalid');
