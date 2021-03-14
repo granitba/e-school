@@ -1,5 +1,5 @@
 <?php
-require_once './includes/connection.php';
+require_once '../includes/connection.php';
 
 function getTeachers() {
     $rows = [];
@@ -13,15 +13,15 @@ function getTeachers() {
     }
     return $rows;
 }
-function getUsers() {
+function getAdmins() {
     $rows = [];
     try {
         global $database;
-        $stmt = $database->query("SELECT Id, name, email, role, password FROM users");
+        $stmt = $database->query("SELECT Id, name, email, role, password FROM users WHERE role = 1");
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $exception) {
-        error_log("Getting users failed: " . $exception->getMessage());
+        error_log("Getting admins failed: " . $exception->getMessage());
     }
     return $rows;
 }

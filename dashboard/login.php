@@ -27,9 +27,8 @@
                 <input class="text-input" type="password" align="center" placeholder="Password" name="password">
                 <p style="color:red" id="error" align="center"></p>
                 <input class="submit" type="submit" value="Sign in" align="center">
-                <p class="forgot" align="center"><a href="#">Forgot Password?</p>
             </form>
         </div>
     </body>
-    <script src="../assets/js/login.js"></script>
+    <script src="<?= WEB_ROOT ?>/assets/js/login.js"></script>
 </html>

@@ -6,7 +6,7 @@ function validateEmail(email) {
 function formValidation() {
     var email = document.forms["login-form"]["email"].value;
     var password = document.forms["login-form"]["password"].value;
-    var password_confirm = document.forms["login-form"]["password_confirm"].value;
+    var password_confirm = document.forms["login-form"]["password_confirm"];
     var error = document.getElementById("error");
 
     if (email == "") {
@@ -26,8 +26,8 @@ function formValidation() {
         error.textContent = "Password length must be greater than 8 characters!";
         return false;
     }
-    if (password_confirm) {
-        if (password_confirm !== password) {
+    if (typeof password_confirm === 'undefined') {
+        if (password_confirm.value !== password) {
             error.textContent = "Passwords do not match!";
             return false;
         }

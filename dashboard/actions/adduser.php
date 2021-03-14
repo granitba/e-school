@@ -1,7 +1,6 @@
 <?php
 require_once '../includes/connection.php';
 
-
 if (!empty($_POST)) {
     if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_confirm']) && isset($_POST['role'])) {
         $name = $_POST['name'];

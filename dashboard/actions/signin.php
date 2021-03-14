@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../includes/connection.php';
 
 if (!empty($_POST)) {
@@ -8,7 +9,7 @@ if (!empty($_POST)) {
         if (!empty($email) && !empty($password)) {
             try {
                 global $database;
-                $select_stmt = $database->prepare("SELECT password,role FROM users WHERE email= ?");
+                $select_stmt = $database->prepare("SELECT id,password,role FROM users WHERE email= ?");
                 $select_stmt->bindParam(1, $email, PDO::PARAM_STR);
                 $select_stmt->execute();
                 $row = $select_stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,14 +23,17 @@ if (!empty($_POST)) {
                     switch ($row['role']) {
                         case 1:
                             $_SESSION['admin_login'] = $email;
+                            $_SESSION['admin_id'] = $row['id'];
                             header('location: ../admin/index');
                             exit;
                         case 2:
                             $_SESSION['teacher_login'] = $email;
+                            $_SESSION['teacher_id'] = $row['id'];
                             header('location: ../teacher/index');
                             exit;
                         case 3:
                             $_SESSION['student_login'] = $email;
+                            $_SESSION['student_id'] = $row['id'];
                             header('location: ../student/index');
                             exit;
                     }
