@@ -1,44 +1,45 @@
 <html lang="en">
-    <head>
-        <?php include_once 'admin_head.php'; ?>
-    </head>
-    <body>
+<head>
+    <?php
+    include_once 'admin_head.php';
+    include_once '../actions/getusers.php';
+    $users = getUsers();
+    $roles = array('','Admin', 'Teacher', 'Student');
+    ?>
+</head>
+<body>
+<?php include_once 'admin_sidebar.php' ?>
+<div class="content">
+    <h1 class="title">Users</h1>
     <table>
-        <caption>Statement Summary</caption>
         <thead>
         <tr>
-            <th scope="col">Account</th>
-            <th scope="col">Due Date</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Period</th>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Email</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
+        <?php foreach ($users as $user): ?>
         <tr>
-            <td data-label="Account">Visa - 3412</td>
-            <td data-label="Due Date">04/01/2016</td>
-            <td data-label="Amount">$1,190</td>
-            <td data-label="Period">03/01/2016 - 03/31/2016</td>
+            <td data-label="Name"><?= $user['name'] ?></td>
+            <td data-label="Role"><?= $roles[$user['role']] ?></td>
+            <td data-label="Email"><?= $user['email']  ?></td>
+            <td data-label="Delete">
+                <form style="margin-top: 1em;" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');" action="../actions/deleteuser.php">
+                    <input type="hidden" name="id" value="<?php echo $user['Id']; ?>">
+                    <button style="margin-left: 0;" class="submit" type="submit">Delete User</button>
+                </form>
+            </td>
         </tr>
-        <tr>
-            <td scope="row" data-label="Account">Visa - 6076</td>
-            <td data-label="Due Date">03/01/2016</td>
-            <td data-label="Amount">$2,443</td>
-            <td data-label="Period">02/01/2016 - 02/29/2016</td>
-        </tr>
-        <tr>
-            <td scope="row" data-label="Account">Corporate AMEX</td>
-            <td data-label="Due Date">03/01/2016</td>
-            <td data-label="Amount">$1,181</td>
-            <td data-label="Period">02/01/2016 - 02/29/2016</td>
-        </tr>
-        <tr>
-            <td scope="row" data-label="Acount">Visa - 3412</td>
-            <td data-label="Due Date">02/01/2016</td>
-            <td data-label="Amount">$842</td>
-            <td data-label="Period">01/01/2016 - 01/31/2016</td>
-        </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
-    </body>
+</div>
+<script>
+    $link = document.getElementById('users');
+    $link.classList.add('active');
+</script>
+</body>
 </html>

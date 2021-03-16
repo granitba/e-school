@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 define( 'WEB_ROOT', 'http://localhost/e-school' );
+define('PHP_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/e-school');
 if (!isset($_SESSION['student_login']) || empty($_SESSION['student_login'])) {
     header('location: ../login');
     exit;

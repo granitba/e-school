@@ -1,9 +1,84 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700");
 *{
     font-family: 'Ubuntu', sans-serif;
+    overflow-x: hidden;
 }
 body {
     margin: 0;
+}
+.slider-wrapper{
+    height:95vh;
+    position:relative;
+    width:100%;
+    margin:0 auto;
+}
+.slider-item{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:25px 50px;
+    opacity:0;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.slider-item > a {
+    color: white;
+    background-color: #00000054;
+    padding: 2%;
+    margin-bottom: 3%;
+}
+.slide-arrow {
+    margin: 0.75em 0 0 1em;
+    font-size: 2rem;
+    float: right;
+}
+
+@media (max-width: 480px) {
+    .arrow, .light .arrow {
+        background-size: 10px;
+        background-position: 10px 50%;
+    }
+}
+
+#item-1 {
+    display: none;
+}
+#item-2 {
+    display: none;
+}
+#item-3 {
+    display: none;
+}
+
+.item-1 {
+    z-index: 2;
+    opacity: 1;
+    background:url('../images/slide1.jpg');
+    background-size:cover;
+}
+.item-2{
+    background:url('../images/slide2.jpg');
+    background-size:cover;
+}
+.item-3{
+    background:url('../images/slide3.jpg');
+    background-size:cover;
+}
+
+*:target > .item-1 {
+    opacity: 0;
+}
+
+#item-1:target > .item-1 {
+    opacity: 1;
+}
+
+#item-2:target ~ .item-2, #item-3:target ~ .item-3 {
+    z-index: 3;
+    opacity: 1;
 }
 #login-body {
     background-color: #F3EBF6;
@@ -16,6 +91,7 @@ body {
     margin: 13em auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
 }
 
 .sign {
@@ -33,12 +109,10 @@ body {
     letter-spacing: 1px;
     background: rgba(136, 126, 126, 0.04);
     padding: 10px 20px;
-    border: none;
     border-radius: 20px;
     outline: none;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
     margin-left: 46px;
     text-align: center;
     margin-bottom: 27px;
@@ -68,7 +142,7 @@ form.login-form {
     cursor: pointer;
     border-radius: 5em;
     color: #fff;
-    background: aqua;
+    background: cornflowerblue;
     border: 0;
     padding: 10px 40px;
     margin-left: 35%;
@@ -104,7 +178,7 @@ a {
     font-size: 22px;
     color: #fff;
     padding-left: 1%;
-    width: 16%;
+    width: 12%;
 }
 .nav-title > img {
     width: 100%;
@@ -259,4 +333,61 @@ table th {
     table td:last-child {
         border-bottom: 0;
     }
+}
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f8f8f8;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+.logout {
+    background-color: crimson;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+.title {
+    margin: 2% 3% 2% 3%;
+    font-weight: normal;
 }

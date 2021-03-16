@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../includes/connection.php';
+define('PHP_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/e-school');
+require_once PHP_ROOT . '/dashboard/includes/connection.php';
 
 if (!empty($_POST)) {
     if (isset($_POST['teacher_id']) && isset($_POST['weekday']) && isset($_POST['period'])) {

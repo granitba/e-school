@@ -16,7 +16,7 @@
     </head>
     <body id="login-body">
         <div id="login" style="height: 500px">
-        <p class="sign" align="center">Register</p>
+        <p style="padding-top: 0" class="sign" align="center">Register</p>
         <form style="padding-top: 0" class="login-form" name="login-form" onsubmit="return formValidation()" method="post"
           action="actions/adduser.php">
             <input class="text-input" type="text" align="center" placeholder="Name" name="name">
