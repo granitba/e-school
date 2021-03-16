@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <?php
-    include_once 'teacher_head.php';
+    include_once 'student_head.php';
     ?>
 </head>
 <body>
