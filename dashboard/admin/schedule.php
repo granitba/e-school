@@ -29,9 +29,7 @@ include_once 'admin_sidebar.php';
         </thead>
         <tbody>
         <?php
-        foreach ($periods
-
-        as $period) {
+        foreach ($periods as $period) {
         $period_schedule = array_filter($schedules, function ($var) use ($period) {
             return ($var['period'] == $period);
         });

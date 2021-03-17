@@ -26,7 +26,7 @@ function formValidation() {
         error.textContent = "Password length must be greater than 8 characters!";
         return false;
     }
-    if (typeof password_confirm === 'undefined') {
+    if (typeof password_confirm !== 'undefined') {
         if (password_confirm.value !== password) {
             error.textContent = "Passwords do not match!";
             return false;
