@@ -1,4 +1,4 @@
-<div class="nav">
+<div class="nav" style="overflow-y: hidden;">
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
         <div class="nav-title">
